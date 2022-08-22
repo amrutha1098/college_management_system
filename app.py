@@ -37,7 +37,28 @@ class CM(MyDatabase):
                 print("successful post request ")
 
     # get a list of students
+    def get_student_details(self):
+        @self.app.route('/student', methods=['GET'])
+        def get_student_details():
+            try:
+                data = self.get_table_data_cms("STUDENT")
+                return data
+            except Exception as error:
+                print("Failed to do a get request {}".format(error))
+            else:
+                print("successful get request ")
+
     # get a list of teachers
+    def get_teacher_details(self):
+        @self.app.route('/teacher', methods=['GET'])
+        def get_teacher_details():
+            try:
+                data = self.get_table_data_cms("TEACHER")
+                return data
+            except Exception as error:
+                print("Failed to do a get request {}".format(error))
+            else:
+                print("successful get request ")
 
     # add a class for students
     # assign that class for a student
@@ -48,4 +69,6 @@ if __name__ == '__main__':
     Test = CM()
     Test.create_student()
     Test.create_teacher()
+    Test.get_teacher_details()
+    Test.get_student_details()
     Test.app.run(debug=True)

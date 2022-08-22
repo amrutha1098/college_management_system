@@ -77,3 +77,30 @@ class MyDatabase:
             print("Error updating into database {}".format(error))
         else:
             print("Updated data succcessfully into DB ")
+
+    def get_table_data_cms(self, table = "STUDENT"):
+        try:
+            query = 'SELECT * FROM  ' + str(table) + ';'
+            print(query)
+            self.cursor.execute(query)
+            header = [row[0] for row in self.cursor.description]
+            data = self.cursor.fetchall()
+            print(data)
+            data = self.convert_sql_to_json(header, data)
+            print(data)
+            return data
+        except Exception as error:
+            print("Error fetching the table data {}".format(error))
+        else:
+            print("Fetching data succcessfully from DB ")
+
+    def convert_sql_to_json(self, headers, datas):
+        return_list = []
+
+        for data in datas:
+            return_data = {}
+            for header,value in zip(headers, data):
+                return_data[header] = str(value)
+            return_list.append(return_data)
+        return_data = { "data" : return_list}
+        return return_data
