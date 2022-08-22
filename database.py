@@ -32,8 +32,7 @@ class MyDatabase:
 
     def insert_table_data_student(self, data):
         try:
-            query = 'Insert into STUDENT (ROLL_NO, FIRST_NAME, LAST_NAME) values (' + str(
-                data["roll_no"]) + ',' + str(data["first_name"]) + ',"' + str(data["last_name"]) + '");'
+            query = 'Insert into STUDENT (FIRST_NAME, LAST_NAME) values ("'+ str(data["first_name"]) + '","' + str(data["last_name"]) + '");'
             print(query)
             self.cursor.execute(query)
             self.connection.commit()
@@ -57,8 +56,7 @@ class MyDatabase:
 
     def insert_table_data_teacher(self, data):
         try:
-            query = 'Insert into TEACHER (ID, FIRST_NAME, LAST_NAME) values (' + str(
-                data["id"]) + ',' + str(data["first_name"]) + ',"' + str(data["last_name"]) + '");'
+            query = 'Insert into TEACHER (FIRST_NAME, LAST_NAME) values ("' + str(data["first_name"]) + '","' + str(data["last_name"]) + '");'
             print(query)
             self.cursor.execute(query)
             self.connection.commit()

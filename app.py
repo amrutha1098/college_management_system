@@ -26,7 +26,7 @@ class CM(MyDatabase):
     # create a teacher data
     def create_teacher(self):
         @self.app.route('/teacher', methods=['POST'])
-        def create_student():
+        def create_teacher():
             try:
                 data = request.get_json()
                 self.insert_table_data_teacher(data)
@@ -48,4 +48,4 @@ if __name__ == '__main__':
     Test = CM()
     Test.create_student()
     Test.create_teacher()
-    app.run(debug=True)
+    Test.app.run(debug=True)
