@@ -45,4 +45,7 @@ class CM(MyDatabase):
 
 # Run Server
 if __name__ == '__main__':
+    Test = CM()
+    Test.create_student()
+    Test.create_teacher()
     app.run(debug=True)
