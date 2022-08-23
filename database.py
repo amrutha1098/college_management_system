@@ -78,6 +78,31 @@ class MyDatabase:
         else:
             print("Updated data succcessfully into DB ")
 
+    def insert_table_data_class(self, data):
+        try:
+            query = 'Insert into TEACHER (CNAME, TIME, TEACHER_ID) values ("' + str(data["cname"]) + '","' + str(
+                data["schedule_time"]) + ',' + str(data["teacher_id"]) + '");'
+            print(query)
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Exception as error:
+            print("Error inserting into database {}".format(error))
+        else:
+            print("Inserted data succcessfully into DB ")
+
+    def insert_table_data_enroll_student(self, data):
+        try:
+            query = 'Insert into ENROLL (STUDENT_ID, CNAME) values ("' + str(data["schedule_time"]) + '","' + str(
+                data["class_name"]) + '");'
+            print(query)
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Exception as error:
+            print("Error inserting into database {}".format(error))
+        else:
+            print("Inserted data succcessfully into DB ")
+
+
     def get_table_data_cms(self, table = "STUDENT"):
         try:
             query = 'SELECT * FROM  ' + str(table) + ';'

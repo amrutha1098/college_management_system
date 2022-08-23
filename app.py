@@ -60,7 +60,31 @@ class CM(MyDatabase):
             else:
                 print("successful get request ")
 
-    # add a class for students
+    # add a class for students ( creating class for now )
+    def create_class(self):
+        @self.app.route('/class', methods=['POST'])
+        def create_class():
+            try:
+                data = request.get_json()
+                self.insert_table_data_class(data)
+                return data
+            except Exception as error:
+                print("Failed to do a post request {}".format(error))
+            else:
+                print("successful post request ")
+    # enrolls class for students
+    def enroll_student(self):
+        @self.app.route('/enroll/student', methods=['POST'])
+        def enroll_student():
+            try:
+                data = request.get_json()
+                self.insert_table_data_enroll_student(data)
+                return data
+            except Exception as error:
+                print("Failed to do a post request {}".format(error))
+            else:
+                print("successful post request ")
+
     # assign that class for a student
 
 
@@ -71,4 +95,6 @@ if __name__ == '__main__':
     Test.create_teacher()
     Test.get_teacher_details()
     Test.get_student_details()
+    Test.create_class()
+    Test.enroll_student()
     Test.app.run(debug=True)
