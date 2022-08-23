@@ -80,8 +80,8 @@ class MyDatabase:
 
     def insert_table_data_class(self, data):
         try:
-            query = 'Insert into TEACHER (CNAME, TIME, TEACHER_ID) values ("' + str(data["cname"]) + '","' + str(
-                data["schedule_time"]) + ',' + str(data["teacher_id"]) + '");'
+            query = 'Insert into CLASS (CNAME, TIME, TEACHER_ID) values ("' + str(data["class_name"]) + '","' + str(
+                data["schedule_time"]) + '",' + str(data["teacher_id"]) + ');'
             print(query)
             self.cursor.execute(query)
             self.connection.commit()
@@ -92,7 +92,7 @@ class MyDatabase:
 
     def insert_table_data_enroll_student(self, data):
         try:
-            query = 'Insert into ENROLL (STUDENT_ID, CNAME) values ("' + str(data["schedule_time"]) + '","' + str(
+            query = 'Insert into ENROLL (STUDENT_ID, CNAME) values ("' + str(data["roll_no"]) + '","' + str(
                 data["class_name"]) + '");'
             print(query)
             self.cursor.execute(query)
