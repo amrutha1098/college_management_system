@@ -1,5 +1,5 @@
 import mysql.connector
-from constants import *
+from constants import DB_USER, DB_HOST, DB_PASSWORD, DB_DATABASE
 
 
 class MyDatabase:
@@ -129,3 +129,35 @@ class MyDatabase:
             return_list.append(return_data)
         return_data = { "data" : return_list}
         return return_data
+
+    def fetch_student_enrolled_class(self, roll_no, date):
+        try:
+            query = 'SELECT en.CNAME FROM ENROLL en join CLASS cl on en.CNAME = cl.CNAME WHERE en.STUDENT_ID = ' + str(roll_no)+ ' and cl.TIME LIKE "' + str(date + '%') + '";'
+            print(query)
+            self.cursor.execute(query)
+            header = [row[0] for row in self.cursor.description]
+            data = self.cursor.fetchall()
+            print(data)
+            data = self.convert_sql_to_json(header, data)
+            print(data)
+            return data
+        except Exception as error:
+            print("Error fetching the table data {}".format(error))
+        else:
+            print("Fetching data succcessfully from DB ")
+
+    def fetch_teacher_assigned_class(self, id, date):
+        try:
+            query = 'SELECT CNAME FROM CLASS WHERE teacher_id = ' + str(id)+ ' and TIME LIKE "' + str(date + '%') + '";'
+            print(query)
+            self.cursor.execute(query)
+            header = [row[0] for row in self.cursor.description]
+            data = self.cursor.fetchall()
+            print(data)
+            data = self.convert_sql_to_json(header, data)
+            print(data)
+            return data
+        except Exception as error:
+            print("Error fetching the table data {}".format(error))
+        else:
+            print("Fetching data succcessfully from DB ")
