@@ -146,6 +146,7 @@ class MyDatabase:
         else:
             print("Fetching data succcessfully from DB ")
 
+    # to do >>  return the data as list of string instead of list of json
     def fetch_teacher_assigned_class(self, id, date):
         try:
             query = 'SELECT CNAME FROM CLASS WHERE teacher_id = ' + str(id)+ ' and TIME LIKE "' + str(date + '%') + '";'
